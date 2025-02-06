@@ -1,4 +1,6 @@
 .banner {
     background-color: blue;
     color: black;
+    text-align: center;
+    font-size: larger;
 }
