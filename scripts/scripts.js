@@ -11,6 +11,7 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  sampleRUM,
 } from './aem.js';
 
 /**
@@ -27,6 +28,20 @@ function buildHeroBlock(main) {
     main.prepend(section);
   }
 }
+
+/**
+ * Fetches the query index
+ */
+export async function fetchQueryIndex() {
+  const resp = await fetch('/query-index.json');
+  const json = await resp.json();
+  const lookup = {};
+  json.data.forEach((row) => {
+    lookup[row.path] = row;
+  });
+  window.pageIndex = { data: json.data, lookup };
+}
+
 
 /**
  * load fonts.css and set a session storage flag
@@ -62,7 +77,7 @@ export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
-  buildAutoBlocks(main);
+  // buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
 }
@@ -80,6 +95,8 @@ async function loadEager(doc) {
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
+
+  sampleRUM.enhance();
 
   try {
     /* if desktop (proxy for fast connection) or fonts already loaded, load fonts.css */
