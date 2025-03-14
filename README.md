@@ -4,6 +4,7 @@ Your project's description...
 ## Environments
 - Preview: https://main--aem-eds--abhishekarora801.aem.page/
 - Live: https://main--aem-eds--abhishekarora801.aem.live/
+- Sidekick Library: https://main--aem-eds--abhishekarora801.aem.live/tools/sidekick/library.html
 
 ## Documentation
 
